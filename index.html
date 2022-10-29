@@ -1,0 +1,47 @@
+<html><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head>
+    <script>
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var d = today.getDate();
+        var w = today.getDay();
+        var day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+        m = checkTime(m);
+        
+        // Format for 12-hour clock instead of default 24-hour clock.
+        // Remove these two lines for 24-hour clock.
+        var sep = getSep(h);  // use sep to indicate am/pm.
+        if (h > 12) {h -= 12};  // use 12-hour clock
+        if (h == 0) {h = 12};
+        
+        var theTime = h + sep + m
+        var theDate = day[w] + '&nbsp;' + d
+        
+        document.getElementById('text').innerHTML = theTime;
+        document.getElementById('date').innerHTML = theDate;
+        var t = setTimeout(startTime, 1000);  // 1-sec repeat
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+    function getSep(h) {
+        var sep = '.';
+        if (h >= 12) {sep = ':'};  // use ':' for pm values, '.' for am
+        return sep;
+    }
+    </script>
+    </head>
+    
+    <body onload="startTime()" style="background-color:black;">
+    <!-- Deep red color is used. Adjust color to your taste: #rrggbb -->
+    <div id="date" style="color:#dd0000; font-family:sans-serif;
+              font-size:100px; text-align:right;
+              padding-top:120px; padding-right:120px;">Sat&nbsp;29</div>
+    <div id="text" style="color:#dd0000; font-family:sans-serif; 
+             font-size:256px; text-align:right;
+              line-height:0.8; padding-right:120px;">3:37</div>
+    
+    
+    </body></html>
